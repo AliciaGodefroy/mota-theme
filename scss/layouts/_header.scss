@@ -1,0 +1,28 @@
+// HEADER
+
+.header {
+
+    padding: 35px 0;
+
+    &_logo img {
+        width: 216px;
+    }
+
+    &_wrp {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .menu {
+            list-style-type: none;
+            display: flex;
+            gap: 45px;
+            li a {
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: 'Space Mono', Arial, Helvetica, sans-serif;
+                font-weight: 400;
+                color: black;
+            }
+        }
+    }
+}

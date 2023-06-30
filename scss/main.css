@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+.ctn {
+  margin: auto;
+  max-width: 1150px;
+}
+
+h1 {
+  font-family: "Space Mono", Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Space Mono", Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+h3 {
+  font-family: "Space Mono", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.header {
+  padding: 35px 0;
+}
+.header_logo img {
+  width: 216px;
+}
+.header_wrp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_wrp .menu {
+  list-style-type: none;
+  display: flex;
+  gap: 45px;
+}
+.header_wrp .menu li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Space Mono", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: black;
+}
+
+.footer {
+  padding: 10px 0;
+  border-top: 1px solid;
+}
+.footer .menu {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  gap: 85px;
+}
+.footer .menu li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Space Mono", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: black;
+}/*# sourceMappingURL=main.css.map */

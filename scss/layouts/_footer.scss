@@ -1,0 +1,21 @@
+// FOOTER
+
+.footer {
+
+    padding: 10px 0;
+    border-top: 1px solid;
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        gap: 85px;
+        li a {
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Space Mono', Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            color: black;
+        }
+    }
+}
