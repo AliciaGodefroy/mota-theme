@@ -1,5 +1,6 @@
 </main>
 <footer class="footer">
+    <?php get_template_part( 'templates_part/contact' ); ?>
     <nav id="footer-navigation" class="footer_navigation" role="navigation">
         <?php
         wp_nav_menu( array(
@@ -9,5 +10,6 @@
         ?>
     </nav>
 </footer>
+<?php wp_footer(); ?>
 </body>
 </html>
