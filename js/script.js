@@ -1,20 +1,22 @@
 // Ouverture de la modale au clic sur "Contact"
 
-var modal = document.getElementById('myModal');
-var btn = document.getElementById("menu-item-14");
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("btn-contact");
 
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
-
-// Ouvrir la modal au clic sur le bouton "Contact"
-btn.addEventListener("click", function() {
-modal.style.display = "block";
+btn.addEventListener('click', function(){
+    modal.classList.remove("display");
 });
 
-// Fermer la modal si on clique à l'extérieur
-window.addEventListener("click", function(event) {
-if (event.target == modal) {
-    modal.style.display = "none";
-}
+// Fermeture de la modale au clic hors de contact_wrp
+
+modal.addEventListener('click', function(){
+    modal.classList.add('display');
 });
+
+var modalWrapper = document.querySelectorAll(".contact_wrp");
+
+modalWrapper.forEach(function(element) {
+    element.addEventListener('click', function(event) {
+      event.stopPropagation();
+    });
+  });
