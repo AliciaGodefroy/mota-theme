@@ -1,0 +1,62 @@
+// SINGLE PHOTOS
+
+.b-content {
+
+    &_wrp {
+        display: flex;
+    }
+
+    &_txt, &_med {
+        width: 50%;
+    }
+
+    &_img {
+        display: flex;
+        justify-content: flex-end;
+        & img {
+            object-fit: contain;
+            height: 50%;
+            max-width: 563px
+        }
+    }
+
+    &_txt {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &_ttl {
+        text-transform: uppercase;
+        font-size: 66px;
+        margin: 0;
+    }
+
+    &_info {
+        font-family: 'Space Mono';
+        text-transform: uppercase;
+    }
+
+    .horizontal-line-sm {
+        border-bottom: 1px solid black;
+        margin-top: 2rem;
+        width: 98%;
+    }
+
+    .horizontal-line-lg {
+        display: block;
+        border-bottom: 1px solid black;
+    }
+
+    &_contact {
+        display: flex;
+        gap: 3rem;
+        padding: 3rem 0;
+    }
+
+    &_btn {
+        background-color: #D8D8D8;
+        font-family: 'Space Mono';
+        padding: 16px 110px;
+    }
+}

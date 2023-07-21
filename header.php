@@ -20,7 +20,7 @@
                 wp_nav_menu( array(
                     'theme_location' => 'header-menu',
                     'menu_class'     => 'menu',
-                    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item"><a id="btn-contact">Contact</a></li></ul>',
+                    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item"><a class="btn-contact">Contact</a></li></ul>',
                 ) );
                 ?>
             </nav>

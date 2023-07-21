@@ -1,10 +1,12 @@
 // Ouverture de la modale au clic sur "Contact"
 
 var modal = document.getElementById("myModal");
-var btn = document.getElementById("btn-contact");
+var btns = document.querySelectorAll(".btn-contact");
 
-btn.addEventListener('click', function(){
-    modal.classList.remove("display");
+btns.forEach(function(btn) {
+    btn.addEventListener('click', function(){
+        modal.classList.remove("display");
+    });
 });
 
 // Fermeture de la modale au clic hors de contact_wrp
