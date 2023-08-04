@@ -26,4 +26,4 @@
             </nav>
         </div>
     </header>
-    <main class="main ctn">
+    <main class="main">

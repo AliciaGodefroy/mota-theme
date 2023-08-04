@@ -27,6 +27,44 @@ p {
   font-weight: 300;
 }
 
+.hero {
+  width: 100%;
+  height: 962px;
+  position: relative;
+}
+.hero img {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero_ttl {
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  font-style: italic;
+  font-family: "Space Mono", sans-serif;
+  font-size: 6.5vw;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 2px #fff;
+}
+
+.photo-block {
+  width: 564px;
+  height: 495px;
+}
+.photo-block_img {
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .header {
   padding: 35px 0;
 }
@@ -146,7 +184,10 @@ main {
   display: flex;
 }
 .b-content_txt, .b-content_med {
-  width: 50%;
+  width: 50vw;
+}
+.b-content_med {
+  align-self: end;
 }
 .b-content_img {
   display: flex;
@@ -156,7 +197,7 @@ main {
   -o-object-fit: contain;
      object-fit: contain;
   height: 50%;
-  max-width: 563px;
+  max-width: 37vw;
 }
 .b-content_txt {
   display: flex;
@@ -190,4 +231,55 @@ main {
   background-color: #D8D8D8;
   font-family: "Space Mono";
   padding: 16px 110px;
+}
+.b-content_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.b-content_nav {
+  align-items: center;
+  display: flex;
+  gap: 30px;
+}
+.b-content_nav a {
+  text-decoration: none;
+}
+.b-content_nav-prev, .b-content_nav-next {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.b-content_nav-preview1, .b-content_nav-preview2 {
+  height: 100px;
+}
+.b-content_nav-preview1 img, .b-content_nav-preview2 img {
+  display: none;
+  width: 80px;
+  height: 70px;
+}
+.b-content_nav-prev-link:hover + .b-content_nav-preview1 img {
+  display: block;
+}
+.b-content_nav-next-link:hover + .b-content_nav-preview2 img {
+  display: block;
+}
+.b-content_sugg {
+  padding-top: 65px;
+}
+.b-content_sugg-ttl {
+  text-transform: uppercase;
+}
+.b-content_sugg-photos {
+  display: flex;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.section-photos {
+  margin-top: 80px;
+}
+.section-photos_wrp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }/*# sourceMappingURL=main.css.map */

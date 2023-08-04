@@ -1,0 +1,14 @@
+// PHOTO BLOCK 
+
+.photo-block {
+
+    width: 564px;
+    height: 495px;
+
+    &_img {
+        height: -webkit-fill-available;
+        width: -webkit-fill-available;
+        object-fit: cover;
+    }
+
+}

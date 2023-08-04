@@ -6,6 +6,8 @@ var btns = document.querySelectorAll(".btn-contact");
 btns.forEach(function(btn) {
     btn.addEventListener('click', function(){
         modal.classList.remove("display");
+        const reference = document.querySelector('#ref').innerText;
+        document.querySelector('input[name="your-reference"]').value = reference;
     });
 });
 

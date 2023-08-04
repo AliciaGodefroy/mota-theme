@@ -18,7 +18,16 @@
   // Manipulations des Variable(s) 
 // ==========================================
 
-	// var_dump($post);
+	// Navigation photo prédédente/suivante
+	$next_post = get_next_post();
+	$previous_post = get_previous_post();
+
+	$next_post_lnk = get_permalink( $next_post->ID );
+	$previous_post_lnk = get_permalink( $previous_post->ID );
+
+	$next_post_img 	= get_the_post_thumbnail($next_post->ID);
+	$previous_post_img = get_the_post_thumbnail($previous_post->ID);
+
 
 // ==========================================
 ?>	
@@ -26,10 +35,13 @@
 <?php get_header(); ?>
 
 <div class="b-content">
-	<div class="b-content_wrp">
+
+<!-- SECTION PHOTO -->
+
+	<section class="b-content_wrp ctn">
 		<div class="b-content_txt">
 			<h2 class="b-content_ttl"><?= get_the_title() ?></h2>
-			<p class="b-content_info">Référence : <?= $ref ?></p>
+			<p class="b-content_info">Référence : <span id="ref"><?= $ref ?></span></p>
 			<p class="b-content_info">Catégorie : <?= $catName ?></p>
 			<p class="b-content_info">Format : <?= $formName ?></p>
 			<p class="b-content_info">Type : <?= $type ?></p>
@@ -39,17 +51,65 @@
 		<div class="b-content_med">
 			<div class="b-content_img"><?= get_the_post_thumbnail()?></div>
 		</div>
-	</div>
-	<div class="b-content_actions">
+	</section>
+
+<!-- SECTION CONTACT & NAV -->	
+	<section class="b-content_actions ctn">
 		<div class="b-content_contact">
 			<p>Cette photo vous intéresse ?</p>
 			<a class="btn-contact b-content_btn">Contact</a>
 		</div>
 		<div class="b-content_nav">
-
+			<div class="b-content_nav-prev">
+				<?php if($previous_post): ?>
+					<a class="b-content_nav-prev-link" href="<?= $next_post_lnk ?>">
+						<img src="<?php echo get_stylesheet_directory_uri()."/assets/svg/previous.svg" ?>" alt="Photo précédente">
+					</a>
+					<div class="b-content_nav-preview1">
+						<?= $next_post_img ?>
+					</div>
+				<?php endif; ?>
+			</div>
+			<div class="b-content_nav-next">
+				<?php if($next_post): ?>
+					<a class="b-content_nav-next-link" href="<?= $previous_post_lnk ?>">
+						<img src="<?php echo get_stylesheet_directory_uri()."/assets/svg/next.svg" ?>" alt="Photo suivante">
+					</a>
+					<div class="b-content_nav-preview2">
+							<?= $previous_post_img ?>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
-	</div>
+	</section>
 	<span class="horizontal-line-lg"></span>
+
+<!-- SECTION PHOTOS SUGGÉRÉES -->
+
+	<section class="b-content_sugg ctn">
+		<h3 class="b-content_sugg-ttl">Vous aimerez aussi</h3>
+
+		<?php 
+		$post_id = get_the_ID();
+
+		$args = array(
+			'post_type' => 'photos',
+			'category' => $catName,
+			'posts_per_page' => 2,
+			'paged' => 1,
+			'post__not_in'=> array($post_id)
+		);
+
+		$myQuery = new WP_Query( $args );
+		// var_dump($myQuery->posts)
+		?>
+		<div class="b-content_sugg-photos">
+			<?php foreach($myQuery->posts as $post) :?>
+				<?php get_template_part('template_parts/photo-block'); ?>
+			<?php endforeach;?>
+		</div>
+		<?php wp_reset_postdata();?>
+	</section>
 </div>
 
 

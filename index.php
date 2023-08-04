@@ -1,3 +1,8 @@
 <?php get_header(); ?>
-<h1>Bienvenue sur le site Mota photo!</h1>
+
+<div class="hero">
+    <h1 class="hero_ttl">Photographe event</h1>
+    <img class="hero_bg" src="" alt="">
+</div>
+
 <?php get_footer(); ?>

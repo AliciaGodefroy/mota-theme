@@ -1,0 +1,8 @@
+.section-photos {
+    margin-top: 80px;
+    &_wrp {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
