@@ -1,8 +1,21 @@
 .section-photos {
     margin-top: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     &_wrp {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .load-more-btn {
+        width: fit-content;
+        text-decoration: none;
+        color: black;
+        background-color: #D8D8D8;
+        font-family: "Space Mono";
+        padding: 16px 95px;
     }
 }

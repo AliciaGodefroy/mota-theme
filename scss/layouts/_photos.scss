@@ -109,14 +109,29 @@
     &_sugg {
         padding-top: 65px;
 
+        &-wrp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         &-ttl {
             text-transform: uppercase;
         }
 
         &-photos {
             display: flex;
-            margin-top: 50px;
+            margin: 50px 0 40px 0;
             gap: 20px;
         }
+    }
+
+    .all-photos-btn {
+        width: fit-content;
+        text-decoration: none;
+        color: black;
+        background-color: #D8D8D8;
+        font-family: "Space Mono";
+        padding: 16px 75px;
     }
 }

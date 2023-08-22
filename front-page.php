@@ -26,6 +26,7 @@
 		</div>
 		<?php wp_reset_postdata();?>
 
+        <a class="load-more-btn" href="">Charger plus</a>
 </div>
 
 <?php get_footer(); ?>

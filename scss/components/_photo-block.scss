@@ -11,4 +11,51 @@
         object-fit: cover;
     }
 
+    &_hover {
+        display: none;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.60);
+        top: 0;
+        width: 100%;
+        height: 100%;
+        &-fullscreen, &-eye {
+            text-decoration: none;
+            position: absolute;
+        }
+        &-eye {
+            right: 45%;
+            bottom: 45%;
+        }
+        &-fullscreen {
+            top: 3%;
+            left: 91%;
+            cursor: pointer;
+        }
+        &-elements {
+            height: 100%;
+            width: 100%;
+        }
+        &-infos {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 90%;
+            right: 5%;
+            bottom: 0;
+        }
+        &-ttl, &-cat {
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+    }
+}
+
+.wrapper {
+    position: relative;
+    &:hover {
+        .photo-block_hover {
+            display: initial;
+        }
+    }
 }

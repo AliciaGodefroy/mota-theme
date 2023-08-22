@@ -64,6 +64,51 @@ p {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.photo-block_hover {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.photo-block_hover-fullscreen, .photo-block_hover-eye {
+  text-decoration: none;
+  position: absolute;
+}
+.photo-block_hover-eye {
+  right: 45%;
+  bottom: 45%;
+}
+.photo-block_hover-fullscreen {
+  top: 3%;
+  left: 91%;
+  cursor: pointer;
+}
+.photo-block_hover-elements {
+  height: 100%;
+  width: 100%;
+}
+.photo-block_hover-infos {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 90%;
+  right: 5%;
+  bottom: 0;
+}
+.photo-block_hover-ttl, .photo-block_hover-cat {
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.wrapper {
+  position: relative;
+}
+.wrapper:hover .photo-block_hover {
+  display: initial;
+}
 
 .header {
   padding: 35px 0;
@@ -180,6 +225,44 @@ main {
   justify-content: center;
 }
 
+.lightbox {
+  position: fixed;
+  width: 100wh;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.lightbox.inactive {
+  display: none;
+}
+.lightbox_med {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+}
+.lightbox_img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+#close {
+  position: absolute;
+  right: 65px;
+  top: 55px;
+  cursor: pointer;
+}
+
 .b-content_wrp {
   display: flex;
 }
@@ -266,20 +349,47 @@ main {
 .b-content_sugg {
   padding-top: 65px;
 }
+.b-content_sugg-wrp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .b-content_sugg-ttl {
   text-transform: uppercase;
 }
 .b-content_sugg-photos {
   display: flex;
-  margin-top: 50px;
+  margin: 50px 0 40px 0;
   gap: 20px;
+}
+.b-content .all-photos-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  background-color: #D8D8D8;
+  font-family: "Space Mono";
+  padding: 16px 75px;
 }
 
 .section-photos {
   margin-top: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .section-photos_wrp {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 40px;
+}
+.section-photos .load-more-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  background-color: #D8D8D8;
+  font-family: "Space Mono";
+  padding: 16px 95px;
 }/*# sourceMappingURL=main.css.map */

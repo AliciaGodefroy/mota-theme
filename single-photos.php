@@ -82,7 +82,7 @@
 			</div>
 		</div>
 	</section>
-	<span class="horizontal-line-lg"></span>
+	<span class="horizontal-line-lg ctn"></span>
 
 <!-- SECTION PHOTOS SUGGÉRÉES -->
 
@@ -94,8 +94,9 @@
 
 		$args = array(
 			'post_type' => 'photos',
-			'category' => $catName,
+			'category_name' => $catName,
 			'posts_per_page' => 2,
+			'orderby' => 'rand',
 			'paged' => 1,
 			'post__not_in'=> array($post_id)
 		);
@@ -103,12 +104,15 @@
 		$myQuery = new WP_Query( $args );
 		// var_dump($myQuery->posts)
 		?>
-		<div class="b-content_sugg-photos">
-			<?php foreach($myQuery->posts as $post) :?>
-				<?php get_template_part('template_parts/photo-block'); ?>
-			<?php endforeach;?>
+		<div class="b-content_sugg-wrp">
+			<div class="b-content_sugg-photos">
+				<?php foreach($myQuery->posts as $post) :?>
+					<?php get_template_part('template_parts/photo-block'); ?>
+				<?php endforeach;?>
+			</div>
+			<?php wp_reset_postdata();?>
+			<a class="all-photos-btn" href="">Toutes les photos</a>
 		</div>
-		<?php wp_reset_postdata();?>
 	</section>
 </div>
 
