@@ -8,10 +8,13 @@
         width: 216px;
     }
 
-    &_wrp {
+    &_desk {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    &_wrp {
         .menu {
             list-style-type: none;
             display: flex;
@@ -24,5 +27,35 @@
                 color: black;
             }
         }
+    }
+
+    .main-navigation {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    &_burger {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
+
+    }
+
+    &_mobile {
+        display: none;
+        &-wrp {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .display-mobile {
+        display: block;
+    }
+
+    .dont-show {
+        display: none;
     }
 }

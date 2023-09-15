@@ -1,0 +1,33 @@
+.section-filtres {
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+
+    &_catform {
+        display: flex;
+        gap: 36px;
+    }
+
+    form {
+        width: 260px;
+        padding: 12px 18px;
+        border-radius: 8px;
+        border: 1.3px solid var(--blues-gray-2, #B8BBC2);
+    }
+
+    #filtre-cat, #filtre-formats, #filtre-date {
+        position: relative;
+        display: flex;
+        align-items: center;
+        label {
+            position: absolute;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+        }
+        select {
+            border: none;
+            width: 100%;
+        }
+    }
+}

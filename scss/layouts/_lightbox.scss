@@ -3,8 +3,6 @@
         display: none;
     }
     position: fixed;
-    width: 100wh;
-    height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 999;
     top: 0;
@@ -16,16 +14,49 @@
 
     &_med {
         position: absolute;
-        top: 50%;
+        top: 56%;
         left: 50%;
+        max-width: 383px;
         transform: translate(-50%, -50%);
-        width: 90%;
-        height: 90%;
     }
     &_img {
         object-fit: contain;
         width: 100%;
         height: 100%;
+    }
+
+    &_infos {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &_ref, &_cat {
+        text-transform: uppercase;
+        color: white;
+    }
+
+    &_nav {
+        position: absolute;
+        width: 70%;
+        top: 50%;
+        right: 15%;
+    
+    }
+
+    &_prev, &_next {
+        position: absolute;
+        display: flex;
+        cursor: pointer;
+        gap: 1rem;
+        top: 50%;
+        p {
+            color: white;
+            font-family: 'Space Mono', Arial, Helvetica, sans-serif;
+        }
+    }
+
+    &_next {
+        right: 0;
     }
 }
 

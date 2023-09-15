@@ -111,7 +111,7 @@
 				<?php endforeach;?>
 			</div>
 			<?php wp_reset_postdata();?>
-			<a class="all-photos-btn" href="">Toutes les photos</a>
+			<a class="all-photos-btn" href="<?= get_site_url(); ?>">Toutes les photos</a>
 		</div>
 	</section>
 </div>
