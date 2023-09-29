@@ -9,52 +9,57 @@
 
 <section class="section-filtres ctn">
 	<div class="section-filtres_catform">
-		<form id="filtre-cat">
-			<label for="category" class="letters-transform ">Catégories</label>
-			<select name="categories" id="categories-select" class="filters_text">
-				<option></option>
-				<option value="">Toutes les photos</option>
-				<?php
-				if (!empty($terms_pic_category) && !is_wp_error($terms_pic_category)) {
-					foreach ($terms_pic_category as $individual_pic_cat) {
-						$option_value = $individual_pic_cat->slug;
-						$option_name = $individual_pic_cat->name;
-						echo '<option value="' . $option_value . '">' . $option_name . '</option>';
-					}
-				}
-				?>
-			</select>
-		</form>
+		<div id="filtre-cat" class="filtre-cat">
+			<div class="section-filtres_select">
+				<span class="section-filtres_label">Catégories</span>
+				<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
+			</div>
+			<ul class="section-filtres_options">
+				<?php $categories = get_terms( array( 
+						'taxonomy' => 'category'
+					) );?>
+				<?php foreach($categories as $cat) :?>
+					<li value="<?= $cat->name?>" data-cat="<?= $cat->name ?>">
+						<a class="filtre-cat_option" id="<?= $cat->slug?>" href=""><?= $cat->name?></a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
 
-		<form id="filtre-formats">
-			<label for="formats">Formats</label>
-			<select name="format" id="filter-select" class="filters_text">
-				<option></option>
-				<option value="">Toutes les photos</option>
-				<?php
-				if (!empty($terms_pic_formats) && !is_wp_error($terms_pic_formats)) {
-					foreach ($terms_pic_formats as $pic_format) {
-						$format_option_value = $pic_format->slug;
-						$format_option_name = $pic_format->name;
-						echo '<option value="' . $format_option_value . '">' . $format_option_name . '</option>';
-					}
-				}
-				?>
-			</select>
-		</form>
+		<div id="filtre-formats" class="filtre-formats">
+			<div class="section-filtres_select">
+				<span class="section-filtres_label">Formats</span>
+				<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
+			</div>
+			<ul class="section-filtres_options">
+				<?php $formats = get_terms( array( 
+						'taxonomy' => 'format'
+					) );?>
+				<?php foreach($formats as $form) :?>
+					<li value="<?= $form->name?>" data-form="<?= $form->name?>">
+						<a class="filtre-cat_option" id="<?= $form->slug?>"><?= $form->name?></a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
 	</div>
 	
-	<form id="filtre-date">	
-		<label for="sort-by">Trier par</label>
-		<select name="sort" id="sort-dates" class="filters_text">
-			<option value=""></option>
-			<option value="DESC">Nouveautés</option>
-			<option value="ASC">Les plus anciens</option>
-		</select>
-	</form>
+	<div id="filtre-date" class="filtre-dates">	
+		<div class="section-filtres_select">
+			<span class="section-filtres_label">Trier par</span>
+			<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
+		</div>
+		<ul class="section-filtres_options">
+			<li value="desc"><a>Plus récentes</a></li>
+			<li value="asc"><a>Plus anciennes</a></li>
+		</ul>
+	</div>
 
 </section>
 
+<script>
+	let photosList = [];
+</script>
 <section class="section-photos ctn">
 	<?php 
 

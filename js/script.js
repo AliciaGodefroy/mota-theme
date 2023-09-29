@@ -61,39 +61,41 @@ closeBurger.addEventListener('click', function(){
 const lightbox = document.getElementById("myLightbox");
 const fullscreens = document.querySelectorAll(".fullscreen-icon"); 
 
-fullscreens.forEach(function(fullscreen){
-    fullscreen.addEventListener('click', function(e){
-        lightbox.classList.remove("inactive");
-        const photoBlockImg = e.target.closest('.wrapper').querySelector('.photo-block_img');
+// Créez une fonction pour ouvrir la lightbox
+function openLightbox(e) {
+    lightbox.classList.remove("inactive");
+    const wrapper = e.target.closest('.wrapper');
+    // console.log(wrapper.getAttribute('data-id'));
+    const id = parseInt(wrapper.getAttribute('data-id'));
+    let currentIndex = 0;
+    let currentPhoto = null ;
+    photosList.forEach((photo, index)=>{
+        if(photo.id === id){
+            currentIndex = index;
+            currentPhoto = photo;
+        }
+    });
 
-        //  Remplacer l'attribut src par le lien de l'img sur laquelle on clique
-        const lightboxImgSrc = photoBlockImg.getAttribute('data-src');
-        let lightbox_img = document.querySelector('.lightbox_img');
-        lightbox_img.src = lightboxImgSrc ;
+    //  Remplacez l'attribut src par le lien de l'img sur laquelle on clique
+    let lightbox_img = document.querySelector('.lightbox_img');
+    lightbox_img.src = currentPhoto.link;
 
-        // Récupérer et afficher la référence et la catégorie;
-        let lightboxInfos = document.createElement("div");
-        lightboxInfos.classList.add("lightbox_infos");
-        lightboxInfos.innerHTML = `
-        <p class="lightbox_ref"></p>
-        <p class="lightbox_cat"></p>
-        `;
-        const lightboxMed = document.querySelector(".lightbox_med");
-        lightboxMed.appendChild(lightboxInfos);
-        const lightboxImgRef = photoBlockImg.getAttribute('data-ref');
-        const lightboxImgCat = photoBlockImg.getAttribute('data-cat')
-        const ctnRef = document.querySelector(".lightbox_ref");
-        const ctnCat = document.querySelector(".lightbox_cat");
-        ctnRef.innerHTML = lightboxImgRef ;
-        ctnCat.innerHTML = lightboxImgCat;
+    // Récupérez et affichez la référence et la catégorie;
+    let lightboxInfos = document.createElement("div");
+    lightboxInfos.classList.add("lightbox_infos");
+    lightboxInfos.innerHTML = `
+        <p class="lightbox_ref">${currentPhoto.ref}</p>
+        <p class="lightbox_cat">${currentPhoto.cat}</p>
+    `;
+    const lightboxMed = document.querySelector(".lightbox_med");
+    lightboxMed.appendChild(lightboxInfos);
 
-        // Mise en place de la navigation
-
-        let lightboxNav = document.createElement("div");
-        lightboxNav.classList.add("lightbox_nav");
-        let prevImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-left-white.svg';
-        let nextImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-right-white.svg';
-        lightboxNav.innerHTML = `
+    // Mise en place de la navigation
+    let lightboxNav = document.createElement("div");
+    lightboxNav.classList.add("lightbox_nav");
+    let prevImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-left-white.svg';
+    let nextImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-right-white.svg';
+    lightboxNav.innerHTML = `
         <div class="lightbox_prev">
             <img id="lightbox_icon-prev" src="${prevImagePath}" alt="Photo précédente">
             <p>Précédente</p>
@@ -102,70 +104,87 @@ fullscreens.forEach(function(fullscreen){
             <p>Suivante</p>
             <img id="lightbox_icon-next" src="${nextImagePath}" alt="Photo suivante">
         </div>
-        `;
-        lightbox.appendChild(lightboxNav);
+    `;
+    lightbox.appendChild(lightboxNav);
 
-        const previous = document.querySelector('.lightbox_prev');
-        const next = document.querySelector('.lightbox_next');
+    const previous = document.querySelector('.lightbox_prev');
+    const next = document.querySelector('.lightbox_next');
 
-        previous.addEventListener('click', function(){
-            const lightboxImg = document.querySelector('.lightbox_img');
-            const currentSrc = lightboxImg.src;
-            
-            // Récupérer l'élément .photo-block_img actuel
-            const currentPhotoBlockImg = document.querySelector(`.wrapper[data-src="${currentSrc}"]`);
-            // Trouver l'élément .photo-block_img précédent en remontant dans l'arbre DOM
-            let previousPhotoBlockImg = currentPhotoBlockImg.previousSibling;
-            
-            while (previousPhotoBlockImg && previousPhotoBlockImg.nodeType !== 1) {
-                previousPhotoBlockImg = previousPhotoBlockImg.previousSibling;
+    previous.addEventListener('click', function () {
+        const lightboxImg = document.querySelector('.lightbox_img');
+        // Trouver l'index de l'élément actuel dans le tableau
+        const currentIndex = photosList.findIndex(photo => photo.link === currentPhoto.link);
+
+        // Vérifier si l'élément actuel a un index valide
+        if (currentIndex >= 0) {
+        let previousIndex;
+
+        if (currentIndex === 0) {
+            // Si l'élément actuel est le premier, revenir au dernier élément
+            previousIndex = photosList.length - 1;
+        } else {
+            // Récupérer l'index de l'élément précédent
+            previousIndex = currentIndex - 1;
+        }
+
+        // Récupérer l'élément précédent dans le tableau
+        const previousPhoto = photosList[previousIndex];
+
+        // Mettre à jour currentPhoto pour qu'il soit égal à l'élément précédent
+        currentPhoto = previousPhoto
+
+        lightboxImg.src = currentPhoto.link;
+
+        const lightboxRef = document.querySelector(".lightbox_ref");
+        const lightboxCat = document.querySelector(".lightbox_cat");
+        lightboxRef.innerHTML = currentPhoto.ref;
+        lightboxCat.innerHTML = currentPhoto.cat;
+
+        } else {
+        console.log("L'élément actuel n'a pas été trouvé dans le tableau.");
+        }
+    });
+
+    next.addEventListener('click', function () {
+        const lightboxImg = document.querySelector('.lightbox_img');
+        const currentIndex = photosList.findIndex(photo => photo.link === currentPhoto.link);
+    
+        // Vérifier si l'élément actuel a un index valide
+        if (currentIndex >= 0) {
+            let nextIndex;
+    
+            if (currentIndex === photosList.length - 1) {
+                // Si l'élément actuel est le dernier, revenir au premier élément
+                nextIndex = 0;
+            } else {
+                // Récupérer l'index de l'élément suivant
+                nextIndex = currentIndex + 1;
             }
-        
-            if (previousPhotoBlockImg) {
-                // S'il y a un élément précédent, mettez à jour la source de l'image dans la lightbox
-                const previousImgSrc = previousPhotoBlockImg.getAttribute('data-src');
-                lightboxImg.src = previousImgSrc;
-        
-                // Mettez à jour également les informations de référence et de catégorie si nécessaire
-                const lightboxRef = document.querySelector(".lightbox_ref");
-                const lightboxCat = document.querySelector(".lightbox_cat");
-                const previousImgRef = previousPhotoBlockImg.getAttribute('data-ref');
-                const previousImgCat = previousPhotoBlockImg.getAttribute('data-cat');
-                lightboxRef.innerHTML = previousImgRef;
-                lightboxCat.innerHTML = previousImgCat;
-            }
-        });
+    
+            // Récupérer l'élément suivant dans le tableau
+            const nextPhoto = photosList[nextIndex];
+    
+            // Mettre à jour currentPhoto pour qu'il soit égal à l'élément suivant
+            currentPhoto = nextPhoto;
+    
+            lightboxImg.src = currentPhoto.link;
+    
+            const lightboxRef = document.querySelector(".lightbox_ref");
+            const lightboxCat = document.querySelector(".lightbox_cat");
+            lightboxRef.innerHTML = currentPhoto.ref;
+            lightboxCat.innerHTML = currentPhoto.cat;
+    
+        } else {
+            console.log("L'élément actuel n'a pas été trouvé dans le tableau.");
+        }
+    });    
+}
 
-        next.addEventListener('click', function(){
-            const lightboxImg = document.querySelector('.lightbox_img');
-            const currentSrc = lightboxImg.src;
-
-            const currentPhotoBlockImg = document.querySelector(`.wrapper[data-src="${currentSrc}"]`);
-            // Trouver l'élément .photo-block_img suivant
-            let nextPhotoBlockImg = currentPhotoBlockImg.nextSibling;
-
-            while (nextPhotoBlockImg && nextPhotoBlockImg.nodeType !== 1) {
-                nextPhotoBlockImg = nextPhotoBlockImg.nextSibling;
-            }
-        
-            if (nextPhotoBlockImg) {
-                // S'il y a un élément précédent, mettez à jour la source de l'image dans la lightbox
-                const nextImgSrc = nextPhotoBlockImg.getAttribute('data-src');
-                lightboxImg.src = nextImgSrc;
-        
-                // Mettez à jour également les informations de référence et de catégorie si nécessaire
-                const lightboxRef = document.querySelector(".lightbox_ref");
-                const lightboxCat = document.querySelector(".lightbox_cat");
-                const nextImgRef = nextPhotoBlockImg.getAttribute('data-ref');
-                const nextImgCat = nextPhotoBlockImg.getAttribute('data-cat');
-                lightboxRef.innerHTML = nextImgRef;
-                lightboxCat.innerHTML = nextImgCat;
-            }
-
-        });
-        
-
-    })
+// Ajoutez un gestionnaire d'événements click à l'élément fullscreen
+fullscreens.forEach(function (fullscreen) {
+    fullscreen.addEventListener('click', function (e) {
+        openLightbox(e); // Appel de la fonction pour ouvrir la lightbox
+    });
 });
 
 // Fermeture de la lightbox sur l'icone "Croix"
@@ -176,6 +195,8 @@ close.addEventListener('click', function(){
     lightbox.classList.add('inactive');
 });
 
+
+
 //---------- LOAD MORE BUTTON ----------
 
 let page = 1;
@@ -184,7 +205,7 @@ jQuery(document).ready(function($) {
     $('#load-more').on('click', function(e) {
         e.preventDefault();
 
-        page ++;
+        page++;
         // Données à envoyer avec la requête Ajax
         var data = {
             action: 'load_more',
@@ -197,13 +218,51 @@ jQuery(document).ready(function($) {
             data: data,
             type: 'POST',
             success: function(response) {
-                console.log('Requête Ajax réussie !');
-                // Manipulation des données de réponse ici + ajout à la page
-                $('.section-photos_wrp').append(response);
+                // Convertir la réponse HTML en un objet jQuery
+                var responseData = $(response.data);
+                console.log(responseData);
+                // Rechercher les éléments fullscreen-icon dans la réponse
+                var fullscreenElements = responseData.find('.fullscreen-icon');
+                // Ajouter la réponse au DOM
+                $('.section-photos_wrp').append(responseData);
+                
+                // Déclencher la fonction lightbox au clic sur fullscreen-icon des nouveaux éléments
+                fullscreenElements.on("click", function(e) {
+                    openLightbox(e);
+                });
             },
         });
     });
 });
 
 
-    
+//---------- GESTION DES FILTRES ----------
+
+const filtres = document.querySelectorAll(".section-filtres_select");
+const options = document.querySelectorAll(".section-filtres_options");
+const icons = document.querySelectorAll(".section-filtres_icon");
+
+filtres.forEach(function (filtre, index) {
+    filtre.addEventListener('click', function (e) {
+        options.forEach(function (option, optionIndex) {
+            if (index === optionIndex) {
+                option.classList.toggle('show-options');
+                icons[index].classList.toggle('rotate');
+            } else {
+                option.classList.remove('show-options');
+                icons[optionIndex].classList.remove('rotate');
+            }
+        });
+
+        // Gère l'ajout/suppression de la classe "active" pour le filtre actuellement cliqué
+        if (filtre.classList.contains('active')) {
+            filtre.classList.remove('active');
+        } else {
+            filtres.forEach(function (filter) {
+                filter.classList.remove('active');
+            });
+            filtre.classList.add('active');
+        }
+    });
+});
+

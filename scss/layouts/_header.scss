@@ -12,6 +12,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 10px;
     }
 
     &_wrp {
@@ -45,9 +46,26 @@
 
     &_mobile {
         display: none;
+       .mobile-navigation {
+            height: 100vh;
+            background-color: #E00000;
+            margin-top: 2rem;
+            .menu {
+                flex-direction: column;
+                align-items: center;
+                padding-top: 25rem;
+                .menu-item {
+                    font-size: 44px;
+                    a {
+                        color: white;
+                    }
+                }
+            }
+        }
         &-wrp {
             display: flex;
             justify-content: space-between;
+            padding: 0 10px;
         }
     }
 

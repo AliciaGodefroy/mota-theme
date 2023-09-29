@@ -120,6 +120,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 10px;
 }
 .header_wrp .menu {
   list-style-type: none;
@@ -149,9 +150,26 @@ p {
 .header_mobile {
   display: none;
 }
+.header_mobile .mobile-navigation {
+  height: 100vh;
+  background-color: #E00000;
+  margin-top: 2rem;
+}
+.header_mobile .mobile-navigation .menu {
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25rem;
+}
+.header_mobile .mobile-navigation .menu .menu-item {
+  font-size: 44px;
+}
+.header_mobile .mobile-navigation .menu .menu-item a {
+  color: white;
+}
 .header_mobile-wrp {
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 .header .display-mobile {
   display: block;
@@ -432,25 +450,56 @@ main {
   display: flex;
   gap: 36px;
 }
-.section-filtres form {
+.section-filtres_select {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
   width: 260px;
   padding: 12px 18px;
   border-radius: 8px;
   border: 1.3px solid var(--blues-gray-2, #B8BBC2);
 }
+.section-filtres_options {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+.section-filtres_options li {
+  list-style: none;
+  padding: 12px 18px;
+}
+.section-filtres_options li:hover {
+  background-color: #E00000;
+}
+.section-filtres_options li:hover a {
+  color: white;
+}
+.section-filtres_options a {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+.section-filtres .show-options {
+  display: block;
+}
+.section-filtres .rotate {
+  transform: rotate(180deg);
+}
+.section-filtres .active {
+  border-radius: 8px 8px 0px 0px;
+  border: 1.3px solid #215AFF;
+}
 .section-filtres #filtre-cat, .section-filtres #filtre-formats, .section-filtres #filtre-date {
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.section-filtres #filtre-cat label, .section-filtres #filtre-formats label, .section-filtres #filtre-date label {
-  position: absolute;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-}
-.section-filtres #filtre-cat select, .section-filtres #filtre-formats select, .section-filtres #filtre-date select {
-  border: none;
-  width: 100%;
+.section-filtres #categories-select:focus-visible,
+.section-filtres #format-select:focus-visible,
+.section-filtres #sort-date:focus-visible {
+  outline: none;
 }
 
 .section-photos {
