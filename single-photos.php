@@ -107,7 +107,7 @@
 		<div class="b-content_sugg-wrp">
 			<div class="b-content_sugg-photos">
 				<?php foreach($myQuery->posts as $post) :?>
-					<?php get_template_part('template_parts/photo-block'); ?>
+					<?php get_template_part('template_parts/photo-block', null, ['post'=>$post]); ?>
 				<?php endforeach;?>
 			</div>
 			<?php wp_reset_postdata();?>

@@ -4,6 +4,10 @@
 
     width: 564px;
     height: 495px;
+    @media only screen and (max-width: 600px) {
+        width: 318px;
+        height: 278px;
+    }
 
     &_img {
         height: -webkit-fill-available;

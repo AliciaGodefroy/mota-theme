@@ -4,14 +4,25 @@
 
     &_wrp {
         display: flex;
+        @media only screen and (max-width: 996px) {
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &_txt, &_med {
         width: 50vw;
+        @media only screen and (max-width: 996px) {
+            width: 100%;
+        }
     }
 
     &_med {
         align-self: end;
+        @media only screen and (max-width: 996px) {
+            align-self: auto;
+        }
     }
 
     &_img {
@@ -121,6 +132,8 @@
 
         &-photos {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             margin: 50px 0 40px 0;
             gap: 20px;
         }

@@ -80,33 +80,12 @@ function openLightbox(e) {
     let lightbox_img = document.querySelector('.lightbox_img');
     lightbox_img.src = currentPhoto.link;
 
-    // Récupérez et affichez la référence et la catégorie;
-    let lightboxInfos = document.createElement("div");
-    lightboxInfos.classList.add("lightbox_infos");
-    lightboxInfos.innerHTML = `
-        <p class="lightbox_ref">${currentPhoto.ref}</p>
-        <p class="lightbox_cat">${currentPhoto.cat}</p>
-    `;
-    const lightboxMed = document.querySelector(".lightbox_med");
-    lightboxMed.appendChild(lightboxInfos);
-
-    // Mise en place de la navigation
-    let lightboxNav = document.createElement("div");
-    lightboxNav.classList.add("lightbox_nav");
-    let prevImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-left-white.svg';
-    let nextImagePath = 'wp-content/themes/mota-theme/assets/svg/arrow-right-white.svg';
-    lightboxNav.innerHTML = `
-        <div class="lightbox_prev">
-            <img id="lightbox_icon-prev" src="${prevImagePath}" alt="Photo précédente">
-            <p>Précédente</p>
-        </div>
-        <div class="lightbox_next">
-            <p>Suivante</p>
-            <img id="lightbox_icon-next" src="${nextImagePath}" alt="Photo suivante">
-        </div>
-    `;
-    lightbox.appendChild(lightboxNav);
-
+    let lightboxRef = document.querySelector('.lightbox_ref');
+    lightboxRef.innerHTML = currentPhoto.ref;
+    let lightboxCat = document.querySelector('.lightbox_cat');
+    lightboxCat.innerHTML = currentPhoto.cat;
+    
+    // Navigation 
     const previous = document.querySelector('.lightbox_prev');
     const next = document.querySelector('.lightbox_next');
 
@@ -233,11 +212,98 @@ jQuery(document).ready(function($) {
             },
         });
     });
+    $('.filtre-cat_option').on('click', function(e) {
+        e.preventDefault();
+
+        var selectedCategory = $(this).parent().data('cat');
+        // Réinitialise la page à 1 lorsque vous changez la catégorie
+        page = 1;
+
+        $('.cat-label').text(selectedCategory);
+
+        // Données à envoyer avec la requête Ajax
+        var categoryData = {
+            action: 'load_more',
+            page: page,
+            cat: selectedCategory,
+        };
+
+        // Requête Ajax pour charger les photos de la catégorie sélectionnée
+        $.ajax({
+            url: ajax_object.ajax_url,
+            data: categoryData,
+            type: 'POST',
+            success: function(response) {
+                $('.section-photos_wrp').html(response.data);
+                $(document).on("click", ".fullscreen-icon", function(e) {
+                    openLightbox(e);
+                });
+            },
+        });
+    });
+    
+    $('.filtre-format_option').on('click', function(e) {
+        console.log('cliqué');
+        e.preventDefault();
+
+        var selectedFormat = $(this).parent().data('form');
+        // Réinitialise la page à 1 lorsque vous changez le format
+        page = 1;
+
+        // Mettre à jour le contenu du .section-filtres_label du format sélectionné
+        $('.format-label').text(selectedFormat);
+
+        // Données à envoyer avec la requête Ajax
+        var formatData = {
+            action: 'load_more',
+            page: page,
+            format: selectedFormat, // Ajoutez le paramètre de format ici
+        };
+
+        // Requête Ajax pour charger les photos du format sélectionné
+        $.ajax({
+            url: ajax_object.ajax_url,
+            data: formatData,
+            type: 'POST',
+            success: function(response) {
+                $('.section-photos_wrp').html(response.data);
+                $(document).on("click", ".fullscreen-icon", function(e) {
+                    openLightbox(e);
+                });
+            },
+        });
+    });
+    $('.filtre-date_option').on('click', function(e) {
+        e.preventDefault();
+    
+        var selectedSortOption = $(this).data('sort'); // 
+        page = 1;
+    
+        $('.date-label').text($(this).text());
+
+        var sortData = {
+            action: 'load_more',
+            page: page,
+            sort: selectedSortOption, 
+        };
+    
+        $.ajax({
+            url: ajax_object.ajax_url,
+            data: sortData,
+            type: 'POST',
+            success: function(response) {
+                $('.section-photos_wrp').html(response.data);
+            },
+        });
+    });
+    
 });
 
 
 //---------- GESTION DES FILTRES ----------
 
+
+// Affichage des options
 const filtres = document.querySelectorAll(".section-filtres_select");
 const options = document.querySelectorAll(".section-filtres_options");
 const icons = document.querySelectorAll(".section-filtres_icon");
@@ -266,3 +332,37 @@ filtres.forEach(function (filtre, index) {
     });
 });
 
+// Requête Ajax
+
+jQuery(document).ready(function($) {
+    $('#load-more').on('click', function(e) {
+        e.preventDefault();
+
+        // Données à envoyer avec la requête Ajax
+        var data = {
+            action: 'load_more',
+            page: page
+        };
+
+        // Requête Ajax
+        $.ajax({
+            url: ajax_object.ajax_url,
+            data: data,
+            type: 'POST',
+            success: function(response) {
+                // Convertir la réponse HTML en un objet jQuery
+                var responseData = $(response.data);
+                console.log(responseData);
+                // Rechercher les éléments fullscreen-icon dans la réponse
+                var fullscreenElements = responseData.find('.fullscreen-icon');
+                // Ajouter la réponse au DOM
+                $('.section-photos_wrp').append(responseData);
+                
+                // Déclencher la fonction lightbox au clic sur fullscreen-icon des nouveaux éléments
+                fullscreenElements.on("click", function(e) {
+                    openLightbox(e);
+                });
+            },
+        });
+    });
+});

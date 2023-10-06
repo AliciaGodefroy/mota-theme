@@ -31,12 +31,27 @@ add_action('wp_enqueue_scripts', 'enqueue_jquery');
 
 function load_more() {
     $page = $_POST['page'];
+    $cat = $_POST['cat'];
+    $format = $_POST['format'];
+    $sort = $_POST['sort'] ?? 'DESC';
 
     $args = array(
         'post_type' => 'photos',
         'posts_per_page' => 12,
-        'paged' => $page, // Utilisez la page envoyée depuis Ajax
+        'paged' => $page,
+        'category_name' => $cat,
+        'orderby' => 'publish_date',
+        'order' => $sort,
     );
+    if ($format) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'format',
+                'field' => 'name',
+                'terms' => $format,
+            ),
+        );
+    }
 
     $myQuery = new WP_Query($args);
     ob_start();

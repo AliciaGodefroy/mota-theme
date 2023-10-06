@@ -15,5 +15,19 @@ $ref	= get_field("ref");
 
     <div class="lightbox_med">
         <img class="lightbox_img" src="" alt="Photo : <?= $ttl ?>">
+        <div class="lightbox_infos">
+            <p class="lightbox_ref"></p>
+            <p class="lightbox_cat"></p>
+        </div>
+    </div>
+    <div class="lightbox_nav">
+    <div class="lightbox_prev">
+            <img id="lightbox_icon-prev" src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow-left-white.svg" alt="Photo précédente">
+            <p>Précédente</p>
+        </div>
+        <div class="lightbox_next">
+            <p>Suivante</p>
+            <img id="lightbox_icon-next" src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow-right-white.svg" alt="Photo suivante">
+        </div>
     </div>
 </div>

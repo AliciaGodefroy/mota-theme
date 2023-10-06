@@ -11,7 +11,7 @@
 	<div class="section-filtres_catform">
 		<div id="filtre-cat" class="filtre-cat">
 			<div class="section-filtres_select">
-				<span class="section-filtres_label">Catégories</span>
+				<span class="section-filtres_label cat-label">Catégories</span>
 				<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
 			</div>
 			<ul class="section-filtres_options">
@@ -28,7 +28,7 @@
 
 		<div id="filtre-formats" class="filtre-formats">
 			<div class="section-filtres_select">
-				<span class="section-filtres_label">Formats</span>
+				<span class="section-filtres_label format-label">Formats</span>
 				<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
 			</div>
 			<ul class="section-filtres_options">
@@ -37,7 +37,7 @@
 					) );?>
 				<?php foreach($formats as $form) :?>
 					<li value="<?= $form->name?>" data-form="<?= $form->name?>">
-						<a class="filtre-cat_option" id="<?= $form->slug?>"><?= $form->name?></a>
+						<a class="filtre-format_option" id="<?= $form->slug?>"><?= $form->name?></a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
@@ -46,12 +46,16 @@
 	
 	<div id="filtre-date" class="filtre-dates">	
 		<div class="section-filtres_select">
-			<span class="section-filtres_label">Trier par</span>
+			<span class="section-filtres_label date-label">Trier par</span>
 			<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
 		</div>
 		<ul class="section-filtres_options">
-			<li value="desc"><a>Plus récentes</a></li>
-			<li value="asc"><a>Plus anciennes</a></li>
+			<li value="desc">
+				<a class="filtre-date_option" data-sort="desc">Plus récentes</a>
+			</li>
+			<li value="asc">
+				<a class="filtre-date_option" data-sort="asc">Plus anciennes</a>
+			</li>
 		</ul>
 	</div>
 
