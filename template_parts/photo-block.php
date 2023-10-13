@@ -28,7 +28,7 @@ $formName= $form[0]->name;
 <div class="wrapper" data-id="<?= $id ?>" data-src="<?= wp_get_attachment_url($img) ?>" data-cat="<?= $catName ?>" data-ref="<?= $ref ?>">
     <article class="photo-block">
         <a href="<?= $link ?>"class="photo-block_lnk">
-            <img class="photo-block_img" src="<?= wp_get_attachment_url($img) ?>" data-src="<?= wp_get_attachment_url($img) ?>" data-cat="<?= $catName ?>" data-title="<?= $ttl ?>" data-ref="<?= $ref ?>">
+            <img class="photo-block_img" src="<?= wp_get_attachment_url($img) ?>" data-id="<?= $id ?>" data-src="<?= wp_get_attachment_url($img) ?>" data-cat="<?= $catName ?>" data-title="<?= $ttl ?>" data-ref="<?= $ref ?>">
         </a>
     </article>
     <div class="photo-block_hover">

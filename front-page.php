@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
-<section class="hero">
+<section class="hero" data-aos="fade">
     <h1 class="hero_ttl"><?php the_title(); ?></h1>
-    <img src="<?php echo get_stylesheet_directory_uri()."/assets/img/nathalie-0-min.jpeg" ?>" alt="">
+    <img src="<?php echo get_stylesheet_directory_uri()."/assets/img/nathalie-0-min.jpeg" ?>">
 </section>
 
 <!-- SECTION FILTRES -->

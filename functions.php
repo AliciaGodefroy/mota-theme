@@ -19,6 +19,13 @@ add_action( 'after_setup_theme', 'register_my_menus' );
 
 add_theme_support( 'post-thumbnails' );
 
+function enqueue_aos() {
+    wp_enqueue_script('aos', 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js');
+    wp_enqueue_style('aos-css', 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css');
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_aos');
+
 //---------- LOAD MORE BUTTON
 
 function enqueue_jquery() {

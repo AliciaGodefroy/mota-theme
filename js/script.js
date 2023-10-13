@@ -179,18 +179,21 @@ close.addEventListener('click', function(){
 //---------- LOAD MORE BUTTON ----------
 
 let page = 1;
+let cat = '';
+let format = '';
+let sort = '';
 
-jQuery(document).ready(function($) {
-    $('#load-more').on('click', function(e) {
-        e.preventDefault();
+function load_photos() {
 
-        page++;
-        // Données à envoyer avec la requête Ajax
-        var data = {
-            action: 'load_more',
-            page: page
-        };
+    var data = {
+        action: 'load_more',
+        page: page,
+        cat: cat, // Utilisez la variable globale ici
+        format: format, // Utilisez la variable globale ici
+        sort: sort, // Utilisez la variable globale ici
+    };
 
+    jQuery(document).ready(function($) {
         // Requête Ajax
         $.ajax({
             url: ajax_object.ajax_url,
@@ -198,12 +201,39 @@ jQuery(document).ready(function($) {
             type: 'POST',
             success: function(response) {
                 // Convertir la réponse HTML en un objet jQuery
-                var responseData = $(response.data);
+                let responseData = $(response.data);
                 console.log(responseData);
                 // Rechercher les éléments fullscreen-icon dans la réponse
-                var fullscreenElements = responseData.find('.fullscreen-icon');
+                let fullscreenElements = responseData.find('.fullscreen-icon');
+    
+                // Vider le contenu actuel de .section-photos_wrp
+                $('.section-photos_wrp').empty();
+                
                 // Ajouter la réponse au DOM
                 $('.section-photos_wrp').append(responseData);
+
+                photosList=[];
+
+                 // Rechercher les nouvelles photos dans la réponse
+                 let newPhotos = responseData.find('.photo-block_img');
+                 console.log(newPhotos);
+
+                 // Pour chaque nouvelle photo, ajouter ses données à photosList
+                 newPhotos.each(function() {
+                     let id = $(this).data('id');
+                     let link = $(this).data('src');
+                     var title = $(this).data('title');
+                     var cat = $(this).data('cat');
+                     var ref = $(this).data('ref');
+ 
+                     photosList.push({
+                         id: id,
+                         link: link,
+                         title: title,
+                         cat: cat,
+                         ref: ref
+                     });
+                 });
                 
                 // Déclencher la fonction lightbox au clic sur fullscreen-icon des nouveaux éléments
                 fullscreenElements.on("click", function(e) {
@@ -212,93 +242,36 @@ jQuery(document).ready(function($) {
             },
         });
     });
+};
+
+jQuery(document).ready(function($) {
+    $('#load-more').on('click', function(e) {
+        e.preventDefault();
+        page++;
+        load_photos();
+    });
     $('.filtre-cat_option').on('click', function(e) {
         e.preventDefault();
-
-        var selectedCategory = $(this).parent().data('cat');
-        // Réinitialise la page à 1 lorsque vous changez la catégorie
         page = 1;
-
-        $('.cat-label').text(selectedCategory);
-
-        // Données à envoyer avec la requête Ajax
-        var categoryData = {
-            action: 'load_more',
-            page: page,
-            cat: selectedCategory,
-        };
-
-        // Requête Ajax pour charger les photos de la catégorie sélectionnée
-        $.ajax({
-            url: ajax_object.ajax_url,
-            data: categoryData,
-            type: 'POST',
-            success: function(response) {
-                $('.section-photos_wrp').html(response.data);
-                $(document).on("click", ".fullscreen-icon", function(e) {
-                    openLightbox(e);
-                });
-            },
-        });
+        cat = $(this).parent().data('cat');
+        $('.cat-label').text(cat);
+        load_photos();
     });
-    
     $('.filtre-format_option').on('click', function(e) {
-        console.log('cliqué');
         e.preventDefault();
-
-        var selectedFormat = $(this).parent().data('form');
-        // Réinitialise la page à 1 lorsque vous changez le format
         page = 1;
-
-        // Mettre à jour le contenu du .section-filtres_label du format sélectionné
-        $('.format-label').text(selectedFormat);
-
-        // Données à envoyer avec la requête Ajax
-        var formatData = {
-            action: 'load_more',
-            page: page,
-            format: selectedFormat, // Ajoutez le paramètre de format ici
-        };
-
-        // Requête Ajax pour charger les photos du format sélectionné
-        $.ajax({
-            url: ajax_object.ajax_url,
-            data: formatData,
-            type: 'POST',
-            success: function(response) {
-                $('.section-photos_wrp').html(response.data);
-                $(document).on("click", ".fullscreen-icon", function(e) {
-                    openLightbox(e);
-                });
-            },
-        });
+        format = $(this).parent().data('form');
+        $('.format-label').text(format);
+        load_photos();
     });
     $('.filtre-date_option').on('click', function(e) {
         e.preventDefault();
-    
-        var selectedSortOption = $(this).data('sort'); // 
         page = 1;
-    
-        $('.date-label').text($(this).text());
-
-        var sortData = {
-            action: 'load_more',
-            page: page,
-            sort: selectedSortOption, 
-        };
-    
-        $.ajax({
-            url: ajax_object.ajax_url,
-            data: sortData,
-            type: 'POST',
-            success: function(response) {
-                $('.section-photos_wrp').html(response.data);
-            },
-        });
+        sort = $(this).data('sort');
+        $('.date-label').text(sort);
+        load_photos();
     });
-    
 });
-
 
 //---------- GESTION DES FILTRES ----------
 
@@ -332,37 +305,6 @@ filtres.forEach(function (filtre, index) {
     });
 });
 
-// Requête Ajax
+//----------------- ANIMATIONS ----------------- 
 
-jQuery(document).ready(function($) {
-    $('#load-more').on('click', function(e) {
-        e.preventDefault();
-
-        // Données à envoyer avec la requête Ajax
-        var data = {
-            action: 'load_more',
-            page: page
-        };
-
-        // Requête Ajax
-        $.ajax({
-            url: ajax_object.ajax_url,
-            data: data,
-            type: 'POST',
-            success: function(response) {
-                // Convertir la réponse HTML en un objet jQuery
-                var responseData = $(response.data);
-                console.log(responseData);
-                // Rechercher les éléments fullscreen-icon dans la réponse
-                var fullscreenElements = responseData.find('.fullscreen-icon');
-                // Ajouter la réponse au DOM
-                $('.section-photos_wrp').append(responseData);
-                
-                // Déclencher la fonction lightbox au clic sur fullscreen-icon des nouveaux éléments
-                fullscreenElements.on("click", function(e) {
-                    openLightbox(e);
-                });
-            },
-        });
-    });
-});
+AOS.init();
