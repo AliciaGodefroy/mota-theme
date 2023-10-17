@@ -183,7 +183,7 @@ let cat = '';
 let format = '';
 let sort = '';
 
-function load_photos() {
+function load_photos(replace = true) {
 
     var data = {
         action: 'load_more',
@@ -205,35 +205,14 @@ function load_photos() {
                 console.log(responseData);
                 // Rechercher les éléments fullscreen-icon dans la réponse
                 let fullscreenElements = responseData.find('.fullscreen-icon');
-    
-                // Vider le contenu actuel de .section-photos_wrp
-                $('.section-photos_wrp').empty();
+                
+                if(replace) {
+                    // Vider le contenu actuel de .section-photos_wrp
+                    $('.section-photos_wrp').empty();
+                }
                 
                 // Ajouter la réponse au DOM
                 $('.section-photos_wrp').append(responseData);
-
-                photosList=[];
-
-                 // Rechercher les nouvelles photos dans la réponse
-                 let newPhotos = responseData.find('.photo-block_img');
-                 console.log(newPhotos);
-
-                 // Pour chaque nouvelle photo, ajouter ses données à photosList
-                 newPhotos.each(function() {
-                     let id = $(this).data('id');
-                     let link = $(this).data('src');
-                     var title = $(this).data('title');
-                     var cat = $(this).data('cat');
-                     var ref = $(this).data('ref');
- 
-                     photosList.push({
-                         id: id,
-                         link: link,
-                         title: title,
-                         cat: cat,
-                         ref: ref
-                     });
-                 });
                 
                 // Déclencher la fonction lightbox au clic sur fullscreen-icon des nouveaux éléments
                 fullscreenElements.on("click", function(e) {
@@ -248,13 +227,14 @@ jQuery(document).ready(function($) {
     $('#load-more').on('click', function(e) {
         e.preventDefault();
         page++;
-        load_photos();
+        load_photos(false);
     });
     $('.filtre-cat_option').on('click', function(e) {
         e.preventDefault();
         page = 1;
         cat = $(this).parent().data('cat');
         $('.cat-label').text(cat);
+        photosList = []
         load_photos();
     });
     $('.filtre-format_option').on('click', function(e) {
@@ -262,6 +242,7 @@ jQuery(document).ready(function($) {
         page = 1;
         format = $(this).parent().data('form');
         $('.format-label').text(format);
+        photosList = []
         load_photos();
     });
     $('.filtre-date_option').on('click', function(e) {
@@ -269,6 +250,7 @@ jQuery(document).ready(function($) {
         page = 1;
         sort = $(this).data('sort');
         $('.date-label').text(sort);
+        photosList = []
         load_photos();
     });
 });
