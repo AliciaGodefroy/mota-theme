@@ -15,7 +15,6 @@
 				<img class="section-filtres_icon" src="<?php echo get_template_directory_uri(); ?>/assets/svg/chevron-down-s.svg">
 			</div>
 			<ul class="section-filtres_options">
-				<li value='all-cat'><a class="filtre-cat_option" href="">Toutes les photos</a></li>
 				<?php $categories = get_terms( array( 
 						'taxonomy' => 'category'
 					) );?>

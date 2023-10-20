@@ -257,6 +257,11 @@ main {
   max-height: 90vh;
   overflow-y: auto;
 }
+@media only screen and (max-width: 600px) {
+  .contact_wrp {
+    width: 286px;
+  }
+}
 .contact_wrp form p {
   display: flex;
   flex-direction: column;
@@ -270,6 +275,11 @@ main {
   border-radius: 8px;
   padding: 11px;
   width: 263px;
+}
+@media only screen and (max-width: 600px) {
+  .contact_wrp form input, .contact_wrp form textarea {
+    max-width: 190px;
+  }
 }
 .contact_wrp form input[type=submit] {
   border: none;
@@ -286,6 +296,11 @@ main {
   font-size: 70px;
   line-height: 0.9;
   margin: 0;
+}
+@media only screen and (max-width: 600px) {
+  .contact_txt {
+    font-size: 40px;
+  }
 }
 .contact #wpcf7-f25-o1 {
   padding: 40px 60px;
@@ -514,6 +529,7 @@ main {
   width: -moz-fit-content;
   width: fit-content;
   text-decoration: none;
+  text-align: center;
   color: black;
   background-color: #D8D8D8;
   font-family: "Space Mono";
