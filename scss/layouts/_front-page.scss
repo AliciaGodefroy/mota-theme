@@ -3,6 +3,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    @media only screen and (max-width: 600px) {
+        margin-top: 40px;
+    }
     &_wrp {
         display: flex;
         flex-wrap: wrap;
@@ -16,6 +19,7 @@
         text-decoration: none;
         color: black;
         border: none;
+        cursor: pointer;
         border-radius: 2px;
         background-color: #D8D8D8;
         font-family: "Space Mono";

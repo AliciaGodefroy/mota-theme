@@ -38,7 +38,7 @@
 
 <!-- SECTION PHOTO -->
 
-	<section class="b-content_wrp ctn">
+	<section class="b-content_wrp ctn padding-all">
 		<div class="b-content_txt">
 			<h2 class="b-content_ttl"><?= get_the_title() ?></h2>
 			<p class="b-content_info">Référence : <span id="ref"><?= $ref ?></span></p>
@@ -54,7 +54,7 @@
 	</section>
 
 <!-- SECTION CONTACT & NAV -->	
-	<section class="b-content_actions ctn">
+	<section class="b-content_actions ctn padding-all">
 		<div class="b-content_contact">
 			<p>Cette photo vous intéresse ?</p>
 			<a class="btn-contact b-content_btn">Contact</a>
@@ -82,11 +82,13 @@
 			</div>
 		</div>
 	</section>
-	<span class="horizontal-line-lg ctn"></span>
+	<div class="padding-all">
+		<span class="horizontal-line-lg ctn"></span>
+	</div>
 
 <!-- SECTION PHOTOS SUGGÉRÉES -->
 
-	<section class="b-content_sugg ctn">
+	<section class="b-content_sugg ctn padding-all">
 		<h3 class="b-content_sugg-ttl">Vous aimerez aussi</h3>
 
 		<?php 

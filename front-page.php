@@ -1,13 +1,13 @@
 <?php get_header(); ?>
 
-<section class="hero" data-aos="fade">
+<section class="hero ctn" data-aos="fade">
     <h1 class="hero_ttl"><?php the_title(); ?></h1>
     <img src="<?php echo get_stylesheet_directory_uri()."/assets/img/nathalie-0-min.jpeg" ?>">
 </section>
 
 <!-- SECTION FILTRES -->
 
-<section class="section-filtres ctn">
+<section class="section-filtres ctn padding-all">
 	<div class="section-filtres_catform">
 		<div id="filtre-cat" class="filtre-cat">
 			<div class="section-filtres_select">

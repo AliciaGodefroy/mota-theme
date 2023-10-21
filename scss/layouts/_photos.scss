@@ -7,6 +7,7 @@
 
     &_wrp {
         display: flex;
+        margin-top: 38px;
         @media only screen and (max-width: 996px) {
             flex-direction: column-reverse;
             justify-content: center;
@@ -37,7 +38,7 @@
         & img {
             object-fit: contain;
             height: 50%;
-            max-width: 37vw;
+            max-width: 40vw;
             @media only screen and (max-width: 600px) {
                 max-width: 80vw;
             }
@@ -90,13 +91,14 @@
         background-color: #D8D8D8;
         font-family: 'Space Mono';
         padding: 16px 110px;
+        text-align: center;
+        cursor: pointer;
     }
 
     &_actions {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
     }
 
     &_nav {
@@ -131,12 +133,14 @@
         &-prev-link:hover {
             + .b-content_nav-preview1 img {
                 display: block;
+                object-fit: cover;
             }
         }
 
         &-next-link:hover {
             + .b-content_nav-preview2 img {
                 display: block;
+                object-fit: cover;
             }
         }
     }
