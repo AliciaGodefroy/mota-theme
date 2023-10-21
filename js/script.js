@@ -249,10 +249,18 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         page = 1;
         sort = $(this).data('sort');
-        $('.date-label').text(sort);
-        photosList = []
+        
+        // Ajoutez une correspondance pour les valeurs "desc" et "asc"
+        if (sort === 'desc') {
+            $('.date-label').text('Plus récentes');
+        } else if (sort === 'asc') {
+            $('.date-label').text('Plus anciennes');
+        }
+        
+        photosList = [];
         load_photos();
     });
+    
 });
 
 //---------- GESTION DES FILTRES ----------

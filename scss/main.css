@@ -252,6 +252,11 @@ main {
   padding-bottom: 100px;
   min-height: 100%;
 }
+@media only screen and (max-width: 600px) {
+  main {
+    padding-bottom: 26px;
+  }
+}
 
 .contact {
   display: flex;
@@ -300,10 +305,11 @@ main {
 }
 @media only screen and (max-width: 600px) {
   .contact_wrp form input, .contact_wrp form textarea {
-    max-width: 190px;
+    width: 190px;
   }
 }
 .contact_wrp form input[type=submit] {
+  cursor: pointer;
   border: none;
   font-family: "Space Mono", Arial, Helvetica, sans-serif;
   background-color: #D8D8D8;
@@ -393,11 +399,6 @@ main {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 996px) {
-  .b-content {
-    padding: 0 3rem;
-  }
-}
 .b-content_wrp {
   display: flex;
   margin-top: 38px;
@@ -457,6 +458,7 @@ main {
 }
 @media only screen and (max-width: 600px) {
   .b-content_ttl {
+    padding: 0 40px;
     font-size: 46px;
   }
 }
@@ -464,10 +466,20 @@ main {
   font-family: "Space Mono";
   text-transform: uppercase;
 }
+@media only screen and (max-width: 600px) {
+  .b-content_info {
+    padding: 0 56px;
+  }
+}
 .b-content .horizontal-line-sm {
   border-bottom: 1px solid black;
   margin-top: 2rem;
   width: 98%;
+}
+@media only screen and (max-width: 600px) {
+  .b-content .horizontal-line-sm {
+    width: 100%;
+  }
 }
 .b-content .horizontal-line-lg {
   display: block;
@@ -481,6 +493,7 @@ main {
 @media only screen and (max-width: 600px) {
   .b-content_contact {
     flex-direction: column;
+    padding: 24px 40px;
     gap: 1rem;
     width: 100%;
   }
@@ -538,6 +551,11 @@ main {
 .b-content_sugg {
   padding-top: 65px;
 }
+@media only screen and (max-width: 600px) {
+  .b-content_sugg {
+    padding-top: 25px;
+  }
+}
 .b-content_sugg-wrp {
   display: flex;
   flex-direction: column;
@@ -546,12 +564,22 @@ main {
 .b-content_sugg-ttl {
   text-transform: uppercase;
 }
+@media only screen and (max-width: 600px) {
+  .b-content_sugg-ttl {
+    text-align: center;
+  }
+}
 .b-content_sugg-photos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 50px 0 40px 0;
   gap: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .b-content_sugg-photos {
+    margin: 0;
+  }
 }
 .b-content .all-photos-btn {
   width: -moz-fit-content;
@@ -562,6 +590,11 @@ main {
   background-color: #D8D8D8;
   font-family: "Space Mono";
   padding: 16px 75px;
+}
+@media only screen and (max-width: 600px) {
+  .b-content .all-photos-btn {
+    display: none;
+  }
 }
 
 .section-filtres {

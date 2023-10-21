@@ -1,9 +1,9 @@
 // SINGLE PHOTOS
 
 .b-content {
-    @media only screen and (max-width: 996px) {
-        padding: 0 3rem;
-    }
+    // @media only screen and (max-width: 996px) {
+    //     padding: 0 3rem;
+    // }
 
     &_wrp {
         display: flex;
@@ -56,6 +56,7 @@
         font-size: 66px;
         margin: 0;
         @media only screen and (max-width: 600px) {
+            padding: 0 40px;
             font-size: 46px;
         }
     }
@@ -63,12 +64,18 @@
     &_info {
         font-family: 'Space Mono';
         text-transform: uppercase;
+        @media only screen and (max-width: 600px) {
+            padding: 0 56px;
+        }
     }
 
     .horizontal-line-sm {
         border-bottom: 1px solid black;
         margin-top: 2rem;
         width: 98%;
+        @media only screen and (max-width: 600px) {
+            width: 100%;
+        }
     }
 
     .horizontal-line-lg {
@@ -82,6 +89,7 @@
         padding: 3rem 0;
         @media only screen and (max-width: 600px) {
             flex-direction: column;
+            padding: 24px 40px;
             gap: 1rem;
             width: 100%;
         }
@@ -147,6 +155,9 @@
 
     &_sugg {
         padding-top: 65px;
+        @media only screen and (max-width: 600px) {
+            padding-top: 25px;
+        }
 
         &-wrp {
             display: flex;
@@ -156,6 +167,9 @@
 
         &-ttl {
             text-transform: uppercase;
+            @media only screen and (max-width: 600px) {
+                text-align: center;
+            }
         }
 
         &-photos {
@@ -164,6 +178,9 @@
             justify-content: center;
             margin: 50px 0 40px 0;
             gap: 20px;
+            @media only screen and (max-width: 600px) {
+                margin: 0;
+            }
         }
     }
 
@@ -175,5 +192,8 @@
         background-color: #D8D8D8;
         font-family: "Space Mono";
         padding: 16px 75px;
+        @media only screen and (max-width: 600px) {
+            display: none;
+        }
     }
 }
